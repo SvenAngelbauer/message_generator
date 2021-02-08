@@ -27,6 +27,7 @@ $ node main.js
 ## Features
 List of features ready and TODOs for future development
 * Will generate a random Knock Knock joke from a finite list
+* TODO add more jokes!
 
 ## Status
 Project is: _Finished pending feedback_
