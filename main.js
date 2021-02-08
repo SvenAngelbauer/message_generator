@@ -63,8 +63,25 @@ const jokeStore = {
   }
 }
 
+/**
+ * Initilises the jokeStore object.
+ */
+function initJokeStore() {
+  jokeStore.addJoke('Cow says.','No, a cow says mooooo!');
+  jokeStore.addJoke('Armageddon.','Armageddon a little bored. Let’s go out.');
+  jokeStore.addJoke('Stopwatch.','Stopwatcha doin’ and open the stupid door.');
+  jokeStore.addJoke('Rough.','Rough, rough, rough! It’s your dog!');
+  jokeStore.addJoke('Jester.','Jester silly old man!');
+  jokeStore.addJoke('Egg.','Eggcited to see me?');
+  jokeStore.addJoke('Amish!','You’re not a shoe!');
+  jokeStore.addJoke('Dishes!','Dishes the police come out with your hands up.');
+  jokeStore.addJoke('Gorilla!','Gorilla burger! I’ve got the buns!');
+  jokeStore.addJoke('Twit.','Did anyone else hear an owl?');
+}
+
 // testing code below - to be deleted for production
 
+initJokeStore();
 jokeStore.addJoke('Stopwatch.','Stopwatcha doin’ and open the stupid door.');
 
 //console.log(jokeStore);
