@@ -79,17 +79,25 @@ function initJokeStore() {
   jokeStore.addJoke('Twit.','Did anyone else hear an owl?');
 }
 
+/**
+ * Generates a message being a randomly selected joke from the joke store. As
+ * all knock knock jokes are formed similarily, therefor this method can
+ * use this generic format.
+ */
+function generateMessage() {
+  let randomJoke = Math.floor(Math.random() * jokeStore.jokeArr.length);
+  let joke = jokeStore.getJoke(randomJoke);
+  let article = joke[0];
+  let punchLine = joke[1];
+  let cleanArticle = article.substring(0,article.length - 1);
+
+
+  return  `Knock, knock.\nWho's there?\n${article}\n${cleanArticle} who?\n${punchLine}`;
+}
+
+
 // testing code below - to be deleted for production
 
 initJokeStore();
-jokeStore.addJoke('Stopwatch.','Stopwatcha doin’ and open the stupid door.');
 
-//console.log(jokeStore);
-//console.log(jokeStore.jokeArr);
-console.log('');
-console.log('');
-console.log(jokeStore.getJoke(1));
-jokeStore.removeJoke(10);
-jokeStore.removeJoke(0);
-//console.log(jokeStore);
-console.log(jokeStore.getJoke(0));
+console.log(generateMessage());
