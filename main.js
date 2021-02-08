@@ -95,9 +95,5 @@ function generateMessage() {
   return  `Knock, knock.\nWho's there?\n${article}\n${cleanArticle} who?\n${punchLine}`;
 }
 
-
-// testing code below - to be deleted for production
-
 initJokeStore();
-
 console.log(generateMessage());
