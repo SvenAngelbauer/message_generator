@@ -1,11 +1,17 @@
 // CodeCademy Portfolio Porject :: Message Generator
 // https://www.codecademy.com/paths/full-stack-engineer-career-path/tracks/fscp-javascript-syntax-portfolio-project/modules/fscp-mixed-messages/kanban_projects/mixed-messages
 // Jokes from https://inews.co.uk/light-relief/jokes/knock-knock-jokes-funny-best-100-189897
+// Credit for the file import code to https://discuss.codecademy.com/u/joanrosell/summary on the NieRspirational message generator project https://github.com/JoanRosell/NieRspirational
+
+/*
+* Global variables
+*/
+const fs = require('fs');
+
 
 /**
  * Object which stores all jokes to be returned by the message generator.
  */
-
 const jokeStore = {
   // Initial empty array which will hold the arguments detailed in a knock knock
   // joke. Decompiled knock knock jokes take the form ['Article', 'Punchline']
@@ -68,8 +74,10 @@ const jokeStore = {
   }
 }
 
+
+
 /**
- * Initilises the jokeStore object.
+ * Initilises the jokeStore object with 10 prepared jokes.
  */
 function initJokeStore() {
   jokeStore.addJoke('Cow says.','No, a cow says mooooo!');
@@ -82,6 +90,56 @@ function initJokeStore() {
   jokeStore.addJoke('Dishes!','Dishes the police come out with your hands up.');
   jokeStore.addJoke('Gorilla!','Gorilla burger! I’ve got the buns!');
   jokeStore.addJoke('Twit.','Did anyone else hear an owl?');
+}
+
+/**
+ * Imports a text import file of the structure "article;punchline\n". 
+ * Credit to @joanrosell (https://discuss.codecademy.com/u/joanrosell/summary )
+ * 
+ * @param {String} fileName The filepath to the import file
+ */
+function readFile(fileName) {
+  const lines = fs.readFileSync('./import/' + fileName, 'utf8').split('\n');
+  let tempJokeArr = [];
+  
+  for (let i = 0; i < lines.length; i++) {
+    if (lines[i] !== '') {
+      tempJokeArr.push(lines[i].split(';'));
+    }
+  }
+
+  if (checkImport(tempJokeArr)) {
+    return tempJokeArr;
+  } else {
+    return [];
+  }
+}
+
+/**
+ * Helper method to test that the submitted object is an array of nested arrays
+ * with two elements.
+ * @param {Array} arr the new this._jokeArr to be tested.
+ */
+function checkImport(arr) {
+  let test = true;
+  
+  if (!Array.isArray(arr)) {
+    test = false;
+  };
+
+  if (test) {
+    for (let i = 0; i < arr.length; i++) {
+      if (!Array.isArray(arr[i])) {
+        test = false;
+        break;
+      } else if (arr[1].length !== 2) {
+        test = false;
+        break;
+      }
+    }
+  }
+
+  return test;
 }
 
 /**
@@ -100,5 +158,8 @@ function generateMessage() {
   return  `Knock, knock.\nWho's there?\n${article}\n${cleanArticle} who?\n${punchLine}`;
 }
 
-initJokeStore();
+//initJokeStore();
+//console.log(generateMessage());
+
+jokeStore.jokeArr = readFile('import.txt');
 console.log(generateMessage());
