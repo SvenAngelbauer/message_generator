@@ -60,6 +60,11 @@ const jokeStore = {
   // getter method to return the whole joke array.
   get jokeArr() {
     return this._jokeArr;
+  },
+
+  // setter method to set this._jokeArr.
+  set jokeArr(arr) {
+    this._jokeArr = arr;
   }
 }
 
